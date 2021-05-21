@@ -80,8 +80,19 @@ func (members Members) GetMembersSerializer() []interface{} {
 	return results
 }
 
-// ValidateMember ...
-func (member *Member) ValidateMember() error {
+// ValidateSignIn ...
+func (member *Member) ValidateSignIn() error {
+	if err := util.ValidateFormat(member.Email); err != nil {
+		return err
+	}
+	if err := util.ValidatePassword(member.Password); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ValidateSignUp ...
+func (member *Member) ValidateSignUp() error {
 	if err := util.ValidateDisplayName(member.DisplayName); err != nil {
 		return err
 	}

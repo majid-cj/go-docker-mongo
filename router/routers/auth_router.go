@@ -50,7 +50,7 @@ func (router *AuthenticationRouter) SignUp(c iris.Context) {
 		return
 	}
 
-	err = member.ValidateMember()
+	err = member.ValidateSignUp()
 	if err != nil {
 		util.ResponseT(err, iris.StatusUnprocessableEntity, c)
 		return
@@ -107,7 +107,7 @@ func (router *AuthenticationRouter) SignIn(c iris.Context) {
 		util.ResponseT(util.GetError("error_parsing_data"), iris.StatusBadRequest, c)
 		return
 	}
-	err = member.ValidateMember()
+	err = member.ValidateSignIn()
 	if err != nil {
 		util.ResponseT(err, iris.StatusUnprocessableEntity, c)
 		return
@@ -274,7 +274,7 @@ func (router *AuthenticationRouter) UpdatePassword(c iris.Context) {
 	member.Password = util.EscapeString(string(password))
 	member.UpdateAt = util.GetTimeNow()
 
-	err = member.ValidateMember()
+	err = member.ValidateSignUp()
 	if err != nil {
 		util.ResponseT(err, iris.StatusBadRequest, c)
 		return
