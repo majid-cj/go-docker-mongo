@@ -32,10 +32,10 @@ func NewAuthenticationRouter(
 	token auth.TokenInterface,
 ) *AuthenticationRouter {
 	return &AuthenticationRouter{
-		memberapp:  memberapp,
-		verify:     verify,
-		auth:       auth,
-		token:      token,
+		memberapp: memberapp,
+		verify:    verify,
+		auth:      auth,
+		token:     token,
 	}
 }
 

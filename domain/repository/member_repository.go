@@ -9,8 +9,6 @@ type MemberRepository interface {
 	GetMembers() ([]entity.Member, error)
 	GetMember(string) (*entity.Member, error)
 	GetMembersByType(uint8) ([]entity.Member, error)
-	GetMembersBySource(uint8) ([]entity.Member, error)
 	GetMemberByEmailAndPassword(*entity.Member) (*entity.Member, error)
-	GetMemberByEmailAndSource(*entity.Member) (*entity.Member, uint8, error)
 	UpdatePassword(*entity.Member) error
 }

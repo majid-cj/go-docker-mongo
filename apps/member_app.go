@@ -17,9 +17,7 @@ type MemberAppInterface interface {
 	GetMembers() ([]entity.Member, error)
 	GetMember(string) (*entity.Member, error)
 	GetMembersByType(uint8) ([]entity.Member, error)
-	GetMembersBySource(uint8) ([]entity.Member, error)
 	GetMemberByEmailAndPassword(*entity.Member) (*entity.Member, error)
-	GetMemberByEmailAndSource(*entity.Member) (*entity.Member, uint8, error)
 	UpdatePassword(*entity.Member) error
 }
 
@@ -50,19 +48,9 @@ func (m *MemberApp) GetMembersByType(membertype uint8) ([]entity.Member, error) 
 	return m.repositorymember.GetMembersByType(membertype)
 }
 
-// GetMembersBySource ...
-func (m *MemberApp) GetMembersBySource(source uint8) ([]entity.Member, error) {
-	return m.repositorymember.GetMembersBySource(source)
-}
-
 // GetMemberByEmailAndPassword ...
 func (m *MemberApp) GetMemberByEmailAndPassword(member *entity.Member) (*entity.Member, error) {
 	return m.repositorymember.GetMemberByEmailAndPassword(member)
-}
-
-// GetMemberByEmailAndSource ...
-func (m *MemberApp) GetMemberByEmailAndSource(member *entity.Member) (*entity.Member, uint8, error) {
-	return m.repositorymember.GetMemberByEmailAndSource(member)
 }
 
 // UpdatePassword ...

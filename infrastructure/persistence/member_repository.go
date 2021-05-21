@@ -34,10 +34,6 @@ var _ repository.MemberRepository = &MemberRepository{}
 
 // CreateMember ...
 func (m *MemberRepository) CreateMember(member *entity.Member) (*entity.Member, error) {
-	if member.Type != 2 {
-		return nil, util.GetError("general_error")
-	}
-
 	_, err := m.DB.Indexes().CreateOne(
 		context.Background(),
 		mongo.IndexModel{
@@ -132,41 +128,9 @@ func (m *MemberRepository) GetMembersByType(membertype uint8) ([]entity.Member, 
 	return members, nil
 }
 
-// GetMembersBySource ...
-func (m *MemberRepository) GetMembersBySource(source uint8) ([]entity.Member, error) {
-	var members entity.Members
-
-	filter := bson.M{"source": source}
-
-	cursor, err := m.DB.Find(m.Ctx, filter, nil)
-	if err != nil {
-		return nil, util.GetError("general_error")
-	}
-
-	defer cursor.Close(m.Ctx)
-
-	for cursor.Next(m.Ctx) {
-		var member entity.Member
-		err := cursor.Decode(member)
-		if err != nil {
-			return nil, util.GetError("general_error")
-		}
-		members = append(members, member)
-	}
-
-	if len(members) == 0 {
-		return nil, util.GetError("empty_list")
-	}
-	return members, nil
-}
-
 // GetMemberByEmailAndPassword ...
 func (m *MemberRepository) GetMemberByEmailAndPassword(member *entity.Member) (*entity.Member, error) {
 	var getmember entity.Member
-
-	if member.Type != 2 {
-		return nil, util.GetError("general_error")
-	}
 
 	filter := bson.M{
 		"email":       member.Email,
@@ -186,34 +150,6 @@ func (m *MemberRepository) GetMemberByEmailAndPassword(member *entity.Member) (*
 	}
 
 	return &getmember, nil
-}
-
-// GetMemberByEmailAndSource ...
-func (m *MemberRepository) GetMemberByEmailAndSource(member *entity.Member) (*entity.Member, uint8, error) {
-	var getmember entity.Member
-
-	if member.Type != 2 {
-		return nil, 0, util.GetError("general_error")
-	}
-
-	filter := bson.M{
-		"email":       member.Email,
-		"member_type": member.Type,
-	}
-
-	err := m.DB.FindOne(m.Ctx, filter).Decode(&getmember)
-
-	if err == nil {
-		return &getmember, 0, nil
-	}
-
-	member.PrepareSocialMember()
-	getnewmember, getError := m.CreateMember(member)
-
-	if getError != nil {
-		return &getmember, 0, util.GetError("member_not_found")
-	}
-	return getnewmember, 1, nil
 }
 
 // UpdatePassword ...
