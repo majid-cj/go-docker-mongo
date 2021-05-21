@@ -1,0 +1,22 @@
+# validation error
+invalid_display_name: 'لا يمكن أن يكون اسم العرض فارغًا'
+invalid_email: 'صيغة بريد إلكتروني غير صحيحة'
+invalid_password: 'صيغة كلمة السر غير صحيحة'
+invalid_type: 'نوع غير صالح'
+error_parsing_data: 'خطأ في تحليل البيانات'
+error_size_error: 'أقصى حجم للصورة هو 10 ميغا بايت'
+not_supported_type: 'نوع الصورة غير معتمد'
+
+# authentication error
+email_taken: 'الايميل أخذ مسبقا'
+email_password_wrong: 'البريد الإلكتروني أو كلمة المرور خاطئة'
+unauthorized_access: 'دخول غير مرخص'
+token_expired: 'انتهت صلاحية الرمز'
+no_email_account: 'لم يتم ربط أي حساب بهذا البريد الإلكتروني'
+password_mismatch: 'كلمة المرور غير متطابقة'
+
+# general error
+general_error: 'هناك خطأ ما !!'
+error_retrieve: 'لا يمكن استرداد البيانات'
+empty_list: 'قائمة بيانات فارغة'
+member_not_found: 'مستخدم غير موجود'

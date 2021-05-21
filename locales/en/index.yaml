@@ -1,0 +1,22 @@
+# validation error
+invalid_display_name: 'display name cannot be blank'
+invalid_email: 'invalid email format'
+invalid_password: 'invalid password format'
+invalid_type: 'invalid type'
+error_parsing_data: 'error parsing data'
+error_size_error: 'max image size is 10MB'
+not_supported_type: 'not supported image type'
+
+# authentication error
+email_taken: 'this email is already taken'
+email_password_wrong: 'email or password is wrong'
+unauthorized_access: 'Unauthorized Access'
+token_expired: 'token expired'
+no_email_account: 'no account is associated with this email'
+password_mismatch: 'password mismatch'
+
+# general error
+general_error: 'something went wrong !!'
+error_retrieve: 'cloud not retrieve data'
+empty_list: 'empty data list'
+member_not_found: 'member not found'
